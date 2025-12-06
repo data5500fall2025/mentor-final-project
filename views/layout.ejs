@@ -4,9 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>
-    <%= pageTitle %> - Mentor
-  </title>
+  <title><%= pageTitle %> - Mentor</title>
 
   <!-- Favicons -->
   <link href="/assets/img/favicon.png" rel="icon" />
@@ -43,13 +41,14 @@
       <!-- Navigation -->
       <nav id="navmenu" class="navmenu">
         <ul>
+
           <li><a href="/" class="<%= pageTitle === 'Home' ? 'active' : '' %>">Home</a></li>
           <li><a href="/about" class="<%= pageTitle === 'About' ? 'active' : '' %>">About</a></li>
           <li><a href="/courses" class="<%= pageTitle === 'Courses' ? 'active' : '' %>">Courses</a></li>
           <li><a href="/trainers" class="<%= pageTitle === 'Trainers' ? 'active' : '' %>">Trainers</a></li>
           <li><a href="/events" class="<%= pageTitle === 'Events' ? 'active' : '' %>">Events</a></li>
 
-          <!-- FIXED: correct public contact route -->
+          <!-- Public Contact Route -->
           <li><a href="/contacts" class="<%= pageTitle === 'Contact Us' ? 'active' : '' %>">Contact</a></li>
 
           <li>
@@ -59,21 +58,26 @@
           </li>
 
           <!-- ADMIN DROPDOWN -->
-<% if (session?.user?.roles?.includes("admin")) { %>
-  <li class="dropdown">
-    <a href="#">
-      <span>Admin</span>
-      <i class="bi bi-chevron-down toggle-dropdown"></i>
-    </a>
-    <ul>
-      <!-- Correct admin create course link -->
-      <li><a href="/admin/create-course">Create Course</a></li>
+          <% if (session?.user?.roles?.includes("admin")) { %>
+          <li class="dropdown">
+            <a href="#">
+              <span>Admin</span>
+              <i class="bi bi-chevron-down toggle-dropdown"></i>
+            </a>
 
-      <!-- Contact response link -->
-      <li><a href="/contacts/respond">Respond to Contacts</a></li>
-    </ul>
-  </li>
-<% } %>
+            <ul>
+              <!-- Manage all courses -->
+              <li><a href="/admin/courses">Manage Courses</a></li>
+
+              <!-- Create a new course -->
+              <li><a href="/admin/create-course">Create Course</a></li>
+
+              <!-- Contact messages needing response -->
+              <li><a href="/contacts/respond">Respond to Contacts</a></li>
+            </ul>
+
+          </li>
+          <% } %>
 
         </ul>
 
@@ -83,12 +87,12 @@
       <!-- LOGIN / LOGOUT / MY COURSES BUTTONS -->
       <% if (!session || !session.user) { %>
 
-        <a class="btn-getstarted" href="/auth/login">Login</a>
+      <a class="btn-getstarted" href="/auth/login">Login</a>
 
       <% } else { %>
 
-        <a class="btn-getstarted me-2" href="/auth/my-courses">My Courses</a>
-        <a class="btn-getstarted" href="/auth/logout">Logout</a>
+      <a class="btn-getstarted me-2" href="/auth/my-courses">My Courses</a>
+      <a class="btn-getstarted" href="/auth/logout">Logout</a>
 
       <% } %>
 
@@ -97,9 +101,9 @@
 
   <!-- FLASH MESSAGE -->
   <% if (session?.flashMessage) { %>
-    <div class="alert alert-success text-center py-2">
-      <%= session.flashMessage %>
-    </div>
+  <div class="alert alert-success text-center py-2">
+    <%= session.flashMessage %>
+  </div>
   <% } %>
 
   <main class="main"><%- body %></main>
@@ -108,7 +112,6 @@
     <div class="container footer-top">
       <div class="row gy-4">
 
-        <!-- Footer About -->
         <div class="col-lg-4 col-md-6 footer-about">
           <a href="/" class="logo d-flex align-items-center">
             <span class="sitename">Mentor</span>
@@ -128,7 +131,6 @@
           </div>
         </div>
 
-        <!-- Footer Links -->
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Useful Links</h4>
           <ul>
@@ -140,7 +142,6 @@
           </ul>
         </div>
 
-        <!-- Services -->
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Our Services</h4>
           <ul>
@@ -152,7 +153,6 @@
           </ul>
         </div>
 
-        <!-- Newsletter -->
         <div class="col-lg-4 col-md-12 footer-newsletter">
           <h4>Our Newsletter</h4>
           <p>Subscribe to our newsletter and receive updates!</p>
