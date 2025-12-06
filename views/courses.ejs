@@ -1,0 +1,92 @@
+<!-- Page Title -->
+<div class="page-title" data-aos="fade">
+  <div class="heading">
+    <div class="container">
+      <div class="row d-flex justify-content-center text-center">
+        <div class="col-lg-8">
+          <h1>Courses</h1>
+          <p class="mb-0">
+            Explore our diverse range of expert-led training programs built to help you
+            grow professionally and personally.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="breadcrumbs">
+    <div class="container">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li class="current">Courses</li>
+      </ol>
+    </div>
+  </nav>
+</div>
+
+<!-- Courses Section -->
+<section id="courses" class="courses section">
+  <div class="container">
+    <div class="row">
+
+      <% courses.forEach((course, index) => { %>
+      <div
+        class="col-lg-4 col-md-6 d-flex align-items-stretch"
+        data-aos="zoom-in"
+        data-aos-delay="<%= 100 + (index % 3) * 100 %>"
+      >
+        <div class="course-item">
+
+          <!-- Course Image -->
+          <img
+            src="<%= course.image %>"
+            class="img-fluid"
+            alt="<%= course.title %>"
+          />
+
+          <div class="course-content">
+
+            <!-- Category + Price -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <p class="category">
+                <%= course.trainer?.name || "Instructor" %>
+              </p>
+              <p class="price">$<%= course.price %></p>
+            </div>
+
+            <h3>
+              <a href="/courses/<%= course.slug %>"><%= course.title %></a>
+            </h3>
+
+            <p class="description"><%= course.summary %></p>
+
+            <!-- Trainer Profile -->
+            <div class="trainer d-flex justify-content-between align-items-center">
+              <div class="trainer-profile d-flex align-items-center">
+                <img
+                  src="<%= course.trainer?.imageUrl %>"
+                  class="img-fluid"
+                  alt="<%= course.trainer?.name %>"
+                />
+                <a href="#" class="trainer-link">
+                  <%= course.trainer?.name || "Trainer" %>
+                </a>
+              </div>
+
+              <div class="trainer-rank d-flex align-items-center">
+                <i class="bi bi-person user-icon"></i>&nbsp;
+                <%= course.registrants?.length || 0 %>
+                &nbsp;&nbsp;
+                <i class="bi bi-heart heart-icon"></i>&nbsp;
+                <%= course.likes %>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <% }) %>
+
+    </div>
+  </div>
+</section>

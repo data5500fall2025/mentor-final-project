@@ -1,0 +1,80 @@
+<!-- Page Title -->
+<div class="page-title" data-aos="fade">
+  <div class="heading">
+    <div class="container">
+      <h1><%= course.title %></h1>
+      <p><%= course.summary %></p>
+    </div>
+  </div>
+
+  <nav class="breadcrumbs">
+    <div class="container">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/courses">Courses</a></li>
+        <li class="current"><%= course.title %></li>
+      </ol>
+    </div>
+  </nav>
+</div>
+
+<!-- Course Details Section -->
+<section id="course-details" class="section">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-8">
+
+        <!-- Course Image -->
+        <img src="<%= course.image %>" class="img-fluid mb-4" alt="" />
+
+        <!-- Description -->
+        <h3>About this course</h3>
+        <p><%= course.description %></p>
+
+        <!-- Schedule -->
+        <h4>Schedule</h4>
+        <p><%= course.schedule %></p>
+
+        <!-- Capacity -->
+        <h4>Available Seats: <%= availableSeats %></h4>
+
+      </div>
+
+      <!-- Trainer Card -->
+      <div class="col-lg-4">
+        <div class="trainer-card">
+          <img
+            src="<%= course.trainer?.imageUrl %>"
+            class="img-fluid mb-3"
+            alt="Trainer"
+          />
+          <h3><%= course.trainer?.name %></h3>
+
+          <p><%= course.trainer?.description %></p>
+        </div>
+
+        <!-- Register / Unregister Buttons -->
+        <div class="mt-4">
+
+          <% if (!user) { %>
+            <a href="/auth/login" class="btn btn-primary w-100">Login to Register</a>
+
+          <% } else if (isRegistered) { %>
+            <form action="/courses/<%= course._id %>/unregister" method="POST">
+              <button class="btn btn-danger w-100">Unregister</button>
+            </form>
+
+          <% } else { %>
+            <form action="/courses/register" method="POST">
+              <input type="hidden" name="course" value="<%= course._id %>" />
+              <button class="btn btn-success w-100">Register</button>
+            </form>
+          <% } %>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

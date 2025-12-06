@@ -1,0 +1,31 @@
+<!-- Page Title -->
+<div class="page-title" data-aos="fade">
+  <div class="heading">
+    <div class="container">
+      <div class="row d-flex justify-content-center text-center">
+        <div class="col-lg-8">
+          <h1>External API Demo</h1>
+          <p class="mb-0">
+            Below are 3 random dog photos fetched from a public API!
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+
+    <h3 class="text-center mb-4">Random Dog Photos</h3>
+
+    <div class="row">
+      <% images.forEach(img => { %>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <img src="<%= img %>" class="img-fluid rounded shadow" alt="Dog Image">
+        </div>
+      <% }) %>
+    </div>
+
+  </div>
+</section>

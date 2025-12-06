@@ -1,0 +1,77 @@
+<!-- Page Title -->
+<div class="page-title" data-aos="fade">
+  <div class="heading">
+    <div class="container">
+      <div class="row d-flex justify-content-center text-center">
+        <div class="col-lg-8">
+          <h1>Contact Requests</h1>
+          <p class="mb-0">
+            Below is a list of contact requests that have not yet received a response.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="breadcrumbs">
+    <div class="container">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/admin">Admin</a></li>
+        <li class="current">Contact Requests</li>
+      </ol>
+    </div>
+  </nav>
+</div>
+<!-- End Page Title -->
+
+
+<section class="section">
+  <div class="container" data-aos="fade-up">
+
+    <% if (contacts.length === 0) { %>
+      <div class="alert alert-info text-center py-4">
+         All contacts have been responded to!
+      </div>
+    <% } else { %>
+
+      <div class="table-responsive mt-4">
+        <table class="table table-bordered table-striped align-middle">
+          <thead class="table-dark">
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Subject</th>
+              <th>Message Preview</th>
+              <th>Date Received</th>
+              <th>Respond</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% contacts.forEach(c => { %>
+              <tr>
+                <td><%= c.name %></td>
+                <td><%= c.email %></td>
+                <td><%= c.subject || "(No Subject)" %></td>
+                <td><%= c.message.substring(0, 50) %>...</td>
+                <td><%= c.createdAt.toLocaleDateString() %></td>
+
+                <td class="text-center">
+                  <a 
+                    href="/contacts/respond/<%= c._id %>" 
+                    class="btn btn-primary btn-sm px-3"
+                  >
+                    Respond
+                  </a>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+
+    <% } %>
+
+  </div>
+</section>

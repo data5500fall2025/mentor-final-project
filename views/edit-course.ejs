@@ -1,0 +1,178 @@
+<!-- Page Title -->
+<div class="page-title" data-aos="fade">
+  <div class="heading">
+    <div class="container">
+      <div class="row d-flex justify-content-center text-center">
+        <div class="col-lg-8">
+          <h1>Edit Course</h1>
+          <p class="mb-0">
+            Update the details below to modify this course.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="breadcrumbs">
+    <div class="container">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/courses">Courses</a></li>
+        <li class="current">Edit Course</li>
+      </ol>
+    </div>
+  </nav>
+</div>
+<!-- End Page Title -->
+
+<section id="contact" class="contact section">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+    <div class="row gy-4 justify-content-center">
+      <div class="col-lg-10">
+
+        <!-- FORM START -->
+        <form
+          action="/courses/admin/<%= course._id %>/edit"
+          method="post"
+          enctype="multipart/form-data"
+          class="php-email-form"
+        >
+          <div class="row gy-4">
+
+            <!-- TITLE -->
+            <div class="col-md-12">
+              <label class="form-label fw-bold">Course Title</label>
+              <input
+                type="text"
+                class="form-control"
+                name="title"
+                value="<%= course.title %>"
+                required
+              />
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="col-md-12">
+              <label class="form-label fw-bold">Summary</label>
+              <input
+                type="text"
+                class="form-control"
+                name="summary"
+                value="<%= course.summary %>"
+                required
+              />
+            </div>
+
+            <!-- DESCRIPTION -->
+            <div class="col-md-12">
+              <label class="form-label fw-bold">Description</label>
+              <textarea
+                class="form-control"
+                name="description"
+                rows="5"
+                required
+              ><%= course.description %></textarea>
+            </div>
+
+            <!-- PRICE & CAPACITY -->
+            <div class="col-md-6">
+              <label class="form-label fw-bold">Price ($)</label>
+              <input
+                type="number"
+                step="0.01"
+                name="price"
+                class="form-control"
+                value="<%= course.price %>"
+                required
+              />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-bold">Capacity</label>
+              <input
+                type="number"
+                name="capacity"
+                class="form-control"
+                value="<%= course.capacity %>"
+                required
+              />
+            </div>
+
+            <!-- TRAINER DROPDOWN -->
+            <div class="col-md-12">
+              <label class="form-label fw-bold">Trainer</label>
+              <select class="form-control" name="trainer" required>
+                <% trainers.forEach(t => { %>
+                  <option
+                    value="<%= t._id %>"
+                    <%= t._id.toString() === course.trainer.toString() ? "selected" : "" %>
+                  >
+                    <%= t.name %>
+                  </option>
+                <% }) %>
+              </select>
+            </div>
+
+            <!-- SCHEDULE -->
+            <div class="col-md-12">
+              <label class="form-label fw-bold">Schedule</label>
+              <input
+                type="text"
+                name="schedule"
+                class="form-control"
+                value="<%= course.schedule %>"
+                required
+              />
+            </div>
+
+            <!-- CURRENT IMAGE -->
+            <div class="col-md-12">
+              <label class="form-label fw-bold">Current Image</label><br>
+              <img
+                src="<%= course.image %>"
+                alt="Course Image"
+                style="max-width: 250px; border-radius: 8px;"
+                class="mb-3"
+              />
+            </div>
+
+            <!-- NEW IMAGE UPLOAD -->
+            <div class="col-md-12">
+              <label class="form-label fw-bold">Replace Image (optional)</label>
+              <input
+                type="file"
+                name="image"
+                class="form-control"
+                accept=".jpg,.jpeg,.png"
+              />
+            </div>
+
+            <!-- UPDATE BUTTON -->
+            <div class="col-md-12 text-center">
+              <button type="submit" class="btn btn-primary px-4 py-2 mt-3">
+                Save Changes
+              </button>
+            </div>
+
+          </div>
+        </form>
+        <!-- END FORM -->
+
+        <!-- DELETE BUTTON -->
+        <form
+          action="/courses/admin/<%= course._id %>/delete"
+          method="post"
+          class="text-center mt-4"
+          onsubmit="return confirm('Are you sure you want to delete this course? This action cannot be undone.');"
+        >
+          <button type="submit" class="btn btn-danger px-4 py-2">
+            Delete Course
+          </button>
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+</section>

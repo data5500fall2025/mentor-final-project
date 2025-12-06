@@ -1,0 +1,72 @@
+<!-- Page Header -->
+<div class="container-xxl py-5 bg-dark hero-header mb-5">
+  <div class="container text-center my-5 pt-5 pb-4">
+    <h1 class="display-3 text-white mb-3 animated slideInDown">My Courses</h1>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb justify-content-center text-uppercase">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item text-white active" aria-current="page">My Courses</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<!-- My Courses Section -->
+<div class="container py-5">
+  <% if (!courses || courses.length === 0) { %>
+
+    <div class="text-center">
+      <h3 class="mb-3">You are not registered for any courses yet.</h3>
+      <a href="/courses" class="btn btn-primary btn-lg mt-3">Browse Courses</a>
+    </div>
+
+  <% } else { %>
+
+    <div class="row g-4">
+      <% courses.forEach(course => { %>
+        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+          <div class="course-item bg-light rounded shadow-sm h-100 overflow-hidden">
+
+            <!-- Course Image -->
+            <div class="position-relative">
+              <img
+                src="<%= course.image %>"
+                alt="<%= course.title %>"
+                class="img-fluid w-100"
+                style="height: 200px; object-fit: cover;"
+              >
+            </div>
+
+            <!-- Course Info -->
+            <div class="p-4">
+              <h4 class="mb-2"><%= course.title %></h4>
+
+              <% if (course.trainer) { %>
+                <p class="mb-1 text-muted">
+                  Trainer: <strong><%= course.trainer.name %></strong>
+                </p>
+              <% } %>
+
+              <% if (course.schedule) { %>
+                <p class="mb-1 text-muted">
+                  Schedule: <%= course.schedule %>
+                </p>
+              <% } %>
+
+              <!-- Seats -->
+              <p class="mb-3">
+                <strong>Seats:</strong>
+                <%= course.registrants.length %> / <%= course.capacity %> enrolled
+              </p>
+
+              <a href="/courses/<%= course.slug %>" class="btn btn-primary w-100">
+                View Course
+              </a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+
+  <% } %>
+</div>

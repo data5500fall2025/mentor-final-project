@@ -1,0 +1,79 @@
+<!-- Page Title -->
+<div class="page-title" data-aos="fade">
+  <div class="heading">
+    <div class="container">
+      <div class="row d-flex justify-content-center text-center">
+        <div class="col-lg-8">
+          <h1>Respond to Contact</h1>
+          <p class="mb-0">
+            Review the contact request below and provide your response.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="breadcrumbs">
+    <div class="container">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/admin">Admin</a></li>
+        <li><a href="/admin/contacts">Contact Requests</a></li>
+        <li class="current">Respond</li>
+      </ol>
+    </div>
+  </nav>
+</div>
+<!-- End Page Title -->
+
+
+<section class="section">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+
+        <!-- CONTACT INFO CARD -->
+        <div class="card mb-4">
+          <div class="card-header bg-dark text-white">
+            Contact Details
+          </div>
+          <div class="card-body">
+            <p><strong>Name:</strong> <%= contact.name %></p>
+            <p><strong>Email:</strong> <%= contact.email %></p>
+            <p><strong>Subject:</strong> <%= contact.subject || "(No subject)" %></p>
+            <p><strong>Message:</strong></p>
+            <p class="border p-3 bg-light"><%= contact.message %></p>
+          </div>
+        </div>
+
+        <!-- RESPONSE FORM -->
+        <form 
+          action="/contacts/respond/<%= contact._id %>" 
+          method="POST"
+          class="php-email-form"
+        >
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">Your Response</label>
+            <textarea
+              name="response"
+              class="form-control"
+              rows="6"
+              placeholder="Enter your response here..."
+              required
+            ></textarea>
+          </div>
+
+          <div class="text-center">
+            <button class="btn btn-primary px-4 py-2" type="submit">
+              Send Response
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+</section>

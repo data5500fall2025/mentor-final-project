@@ -1,0 +1,79 @@
+<!-- Page Title -->
+<div class="page-title" data-aos="fade">
+  <div class="heading">
+    <div class="container">
+      <div class="row d-flex justify-content-center text-center">
+        <div class="col-lg-8">
+          <h1>Register for a Course</h1>
+          <p class="mb-0">
+            Complete the form below to register for your selected course.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="breadcrumbs">
+    <div class="container">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/courses">Courses</a></li>
+        <li class="current">Register</li>
+      </ol>
+    </div>
+  </nav>
+</div>
+<!-- End Page Title -->
+
+<section id="contact" class="contact section">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+    <div class="row gy-4 justify-content-center">
+      <div class="col-lg-8">
+
+        <form action="/courses/<%= selectedCourse._id %>/register" method="post" class="php-email-form">
+
+          <div class="row gy-4">
+
+            <!-- USER INFO -->
+            <div class="col-md-6">
+              <label class="form-label fw-bold">First Name</label>
+              <input type="text" class="form-control" value="<%= user.firstName %>" readonly>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-bold">Last Name</label>
+              <input type="text" class="form-control" value="<%= user.lastName %>" readonly>
+            </div>
+
+            <div class="col-md-12">
+              <label class="form-label fw-bold">Email</label>
+              <input type="email" class="form-control" value="<%= user.email %>" readonly>
+            </div>
+
+            <!-- COURSE DROPDOWN -->
+            <div class="col-md-12">
+              <label class="form-label fw-bold">Select Course</label>
+              <select class="form-control" name="course">
+                <% courses.forEach(c => { %>
+                  <option value="<%= c._id %>" <%= c._id.toString() === selectedCourse._id.toString() ? 'selected' : '' %>>
+                    <%= c.title %>
+                  </option>
+                <% }) %>
+              </select>
+            </div>
+
+            <div class="col-md-12 text-center">
+              <button type="submit" class="btn btn-primary px-4 py-2 mt-3">
+                Register
+              </button>
+            </div>
+
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+</section>
