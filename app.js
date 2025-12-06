@@ -88,9 +88,9 @@ app.use(errorController.get404);
 app.use(errorController.get500);
 
 
-// ===============================
+
 // MONGOOSE CONNECTION
-// ===============================
+
 mongoose
   .connect(
     process.env.MONGODB_URI ||
