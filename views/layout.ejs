@@ -4,7 +4,9 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title><%= pageTitle %> - Mentor</title>
+  <title>
+    <%= pageTitle %> - Mentor
+  </title>
 
   <!-- Favicons -->
   <link href="/assets/img/favicon.png" rel="icon" />
@@ -59,25 +61,26 @@
 
           <!-- ADMIN DROPDOWN -->
           <% if (session?.user?.roles?.includes("admin")) { %>
-          <li class="dropdown">
-            <a href="#">
-              <span>Admin</span>
-              <i class="bi bi-chevron-down toggle-dropdown"></i>
-            </a>
+            <li class="dropdown">
+              <a href="#">
+                <span>Admin</span>
+                <i class="bi bi-chevron-down toggle-dropdown"></i>
+              </a>
+              <ul>
 
-            <ul>
-              <!-- Manage all courses -->
-              <li><a href="/admin/courses">Manage Courses</a></li>
+                <!-- MANAGE ALL COURSES -->
+                <li><a href="/admin/courses">Manage Courses</a></li>
 
-              <!-- Create a new course -->
-              <li><a href="/admin/create-course">Create Course</a></li>
+                <!-- CREATE COURSE -->
+                <li><a href="/admin/create-course">Create Course</a></li>
 
-              <!-- Contact messages needing response -->
-              <li><a href="/contacts/respond">Respond to Contacts</a></li>
-            </ul>
+                <!-- RESPOND TO CONTACTS -->
+                <li><a href="/admin/contacts">Respond to Contacts</a></li>
 
-          </li>
-          <% } %>
+              </ul>
+            </li>
+            <% } %>
+
 
         </ul>
 
@@ -87,113 +90,113 @@
       <!-- LOGIN / LOGOUT / MY COURSES BUTTONS -->
       <% if (!session || !session.user) { %>
 
-      <a class="btn-getstarted" href="/auth/login">Login</a>
+        <a class="btn-getstarted" href="/auth/login">Login</a>
 
-      <% } else { %>
+        <% } else { %>
 
-      <a class="btn-getstarted me-2" href="/auth/my-courses">My Courses</a>
-      <a class="btn-getstarted" href="/auth/logout">Logout</a>
+          <a class="btn-getstarted me-2" href="/auth/my-courses">My Courses</a>
+          <a class="btn-getstarted" href="/auth/logout">Logout</a>
 
-      <% } %>
+          <% } %>
 
     </div>
   </header>
 
   <!-- FLASH MESSAGE -->
   <% if (session?.flashMessage) { %>
-  <div class="alert alert-success text-center py-2">
-    <%= session.flashMessage %>
-  </div>
-  <% } %>
+    <div class="alert alert-success text-center py-2">
+      <%= session.flashMessage %>
+    </div>
+    <% } %>
 
-  <main class="main"><%- body %></main>
+      <main class="main"><%- body %></main>
 
-  <footer id="footer" class="footer position-relative light-background">
-    <div class="container footer-top">
-      <div class="row gy-4">
+      <footer id="footer" class="footer position-relative light-background">
+        <div class="container footer-top">
+          <div class="row gy-4">
 
-        <div class="col-lg-4 col-md-6 footer-about">
-          <a href="/" class="logo d-flex align-items-center">
-            <span class="sitename">Mentor</span>
-          </a>
-          <div class="footer-contact pt-3">
-            <p>976-1004 E 550 N</p>
-            <p>Logan, UT 84321</p>
-            <p class="mt-3"><strong>Phone:</strong> <span>+1 435 797 2272</span></p>
-            <p><strong>Email:</strong> <span>info@mentor.com</span></p>
-          </div>
+            <div class="col-lg-4 col-md-6 footer-about">
+              <a href="/" class="logo d-flex align-items-center">
+                <span class="sitename">Mentor</span>
+              </a>
+              <div class="footer-contact pt-3">
+                <p>976-1004 E 550 N</p>
+                <p>Logan, UT 84321</p>
+                <p class="mt-3"><strong>Phone:</strong> <span>+1 435 797 2272</span></p>
+                <p><strong>Email:</strong> <span>info@mentor.com</span></p>
+              </div>
 
-          <div class="social-links d-flex mt-4">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
-            <a href=""><i class="bi bi-linkedin"></i></a>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">Product Management</a></li>
-            <li><a href="#">Marketing</a></li>
-            <li><a href="#">Graphic Design</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-4 col-md-12 footer-newsletter">
-          <h4>Our Newsletter</h4>
-          <p>Subscribe to our newsletter and receive updates!</p>
-          <form action="#" method="post" class="php-email-form">
-            <div class="newsletter-form">
-              <input type="email" name="email" />
-              <input type="submit" value="Subscribe" />
+              <div class="social-links d-flex mt-4">
+                <a href=""><i class="bi bi-twitter-x"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
             </div>
-          </form>
+
+            <div class="col-lg-2 col-md-3 footer-links">
+              <h4>Useful Links</h4>
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Terms of service</a></li>
+                <li><a href="#">Privacy policy</a></li>
+              </ul>
+            </div>
+
+            <div class="col-lg-2 col-md-3 footer-links">
+              <h4>Our Services</h4>
+              <ul>
+                <li><a href="#">Web Design</a></li>
+                <li><a href="#">Web Development</a></li>
+                <li><a href="#">Product Management</a></li>
+                <li><a href="#">Marketing</a></li>
+                <li><a href="#">Graphic Design</a></li>
+              </ul>
+            </div>
+
+            <div class="col-lg-4 col-md-12 footer-newsletter">
+              <h4>Our Newsletter</h4>
+              <p>Subscribe to our newsletter and receive updates!</p>
+              <form action="#" method="post" class="php-email-form">
+                <div class="newsletter-form">
+                  <input type="email" name="email" />
+                  <input type="submit" value="Subscribe" />
+                </div>
+              </form>
+            </div>
+
+          </div>
         </div>
 
-      </div>
-    </div>
+        <div class="container copyright text-center mt-4">
+          <p>
+            © <span>Copyright</span>
+            <strong class="px-1 sitename">Mentor</strong>
+            <span>All Rights Reserved</span>
+          </p>
+          <div class="credits">
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+          </div>
+        </div>
+      </footer>
 
-    <div class="container copyright text-center mt-4">
-      <p>
-        © <span>Copyright</span>
-        <strong class="px-1 sitename">Mentor</strong>
-        <span>All Rights Reserved</span>
-      </p>
-      <div class="credits">
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
-    </div>
-  </footer>
+      <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short"></i>
+      </a>
 
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
-    <i class="bi bi-arrow-up-short"></i>
-  </a>
+      <div id="preloader"></div>
 
-  <div id="preloader"></div>
+      <!-- Vendor JS Files -->
+      <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="/assets/vendor/aos/aos.js"></script>
+      <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+      <script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+      <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
 
-  <!-- Vendor JS Files -->
-  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="/assets/vendor/aos/aos.js"></script>
-  <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-  <!-- Main JS File -->
-  <script src="/assets/js/main.js"></script>
+      <!-- Main JS File -->
+      <script src="/assets/js/main.js"></script>
 
 </body>
 
