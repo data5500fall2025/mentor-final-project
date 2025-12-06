@@ -25,13 +25,13 @@ const userSchema = new mongoose.Schema(
       minlength: [6, "Password must be at least 6 characters"],
     },
 
-    // replaces your isAdmin field
+ 
     roles: {
       type: [String],
       default: ["user"],
     },
 
-    // final project requirement
+
     courses: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -42,7 +42,6 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Hash password before save (fixed)
 userSchema.pre("save", async function () {
   console.log("🔐 Pre-save hook triggered for:", this.email);
 

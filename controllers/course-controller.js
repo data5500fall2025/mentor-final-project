@@ -2,9 +2,7 @@ const Course = require("../models/course-model");
 const Trainer = require("../models/trainer-model");
 const User = require("../models/user-model");
 
-// ======================================================
-// PUBLIC: GET ALL COURSES
-// ======================================================
+
 exports.getCourses = async (req, res, next) => {
   try {
     const courses = await Course.find().populate("trainer");
@@ -19,9 +17,7 @@ exports.getCourses = async (req, res, next) => {
   }
 };
 
-// ======================================================
-// PUBLIC: COURSE DETAILS
-// ======================================================
+
 exports.getCourseDetails = async (req, res, next) => {
   try {
     const slug = req.params.slug;
@@ -55,9 +51,7 @@ exports.getCourseDetails = async (req, res, next) => {
   }
 };
 
-// ======================================================
-// HOMEPAGE: TOP COURSES BY LIKES
-// ======================================================
+
 exports.getTopCoursesByLikes = async (limit) => {
   try {
     return await Course.find()
@@ -70,9 +64,7 @@ exports.getTopCoursesByLikes = async (limit) => {
   }
 };
 
-// ======================================================
-// COURSE REGISTRATION — FORM
-// ======================================================
+
 exports.getRegisterForm = async (req, res, next) => {
   try {
     const courseId = req.params.courseId;
@@ -98,9 +90,7 @@ exports.getRegisterForm = async (req, res, next) => {
   }
 };
 
-// ======================================================
-// COURSE REGISTRATION — SUBMIT
-// ======================================================
+
 exports.postRegister = async (req, res, next) => {
   try {
     const courseId = req.body.course;
@@ -139,9 +129,7 @@ exports.postRegister = async (req, res, next) => {
   }
 };
 
-// ======================================================
-// COURSE UNREGISTER
-// ======================================================
+
 exports.postUnregister = async (req, res, next) => {
   try {
     const courseId = req.params.courseId;
@@ -171,9 +159,7 @@ exports.postUnregister = async (req, res, next) => {
   }
 };
 
-// ======================================================
-// ADMIN: CREATE COURSE
-// ======================================================
+
 exports.getCreateCourse = async (req, res, next) => {
   try {
     const trainers = await Trainer.find();
@@ -214,9 +200,7 @@ exports.postCreateCourse = async (req, res, next) => {
   }
 };
 
-// ======================================================
-// ADMIN: EDIT COURSE
-// ======================================================
+
 exports.getEditCourse = async (req, res, next) => {
   try {
     const course = await Course.findById(req.params.id);
@@ -267,9 +251,7 @@ exports.postEditCourse = async (req, res, next) => {
   }
 };
 
-// ======================================================
-// ADMIN: DELETE COURSE
-// ======================================================
+
 exports.postDeleteCourse = async (req, res, next) => {
   try {
     const course = await Course.findById(req.params.id);

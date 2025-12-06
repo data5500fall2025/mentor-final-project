@@ -1,12 +1,12 @@
 const Course = require("../models/course-model");
 const jwt = require("jsonwebtoken");
 
-// SECRET KEY (move to env in deployment)
+// SECRET KEY 
 const JWT_SECRET = "supersecretjwttoken123";
 
-// ===============================
+
 // GET TOKEN
-// ===============================
+
 exports.getToken = (req, res) => {
   const token = jwt.sign(
     { exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 }, // 24 hours
@@ -15,9 +15,9 @@ exports.getToken = (req, res) => {
   res.json({ token });
 };
 
-// ===============================
+
 // VERIFY TOKEN
-// ===============================
+
 exports.verifyToken = (req, res, next) => {
   const token = req.query.token;
 
@@ -34,9 +34,9 @@ exports.verifyToken = (req, res, next) => {
   }
 };
 
-// ===============================
+
 // GET COURSES AS API JSON
-// ===============================
+
 exports.getCourses = async (req, res) => {
   try {
     let courses = await Course.find().select("-registrants");

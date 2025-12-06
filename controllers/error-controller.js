@@ -1,6 +1,4 @@
-// ===============================
-// 404 NOT FOUND HANDLER
-// ===============================
+
 exports.get404 = (req, res) => {
   return res.status(404).render("404", {
     pageTitle: "404 - Page Not Found",
@@ -8,12 +6,9 @@ exports.get404 = (req, res) => {
   });
 };
 
-// ===============================
-// 500 SERVER ERROR HANDLER
-// (MUST HAVE 4 PARAMETERS for Express to treat it as error middleware)
-// ===============================
+
 exports.get500 = (err, req, res, next) => {
-  console.error("🔥 SERVER ERROR:", err.stack || err);
+  console.error("SERVER ERROR:", err.stack || err);
 
   // Prevent "Can't set headers after they are sent"
   if (res.headersSent) {

@@ -2,9 +2,7 @@ const Course = require("../models/course-model");
 const Trainer = require("../models/trainer-model");
 const User = require("../models/user-model");
 
-// ======================================================
-// ADMIN: VIEW ALL COURSES
-// ======================================================
+
 exports.getAdminCourses = async (req, res, next) => {
   try {
     const courses = await Course.find().populate("trainer");
@@ -19,9 +17,7 @@ exports.getAdminCourses = async (req, res, next) => {
   }
 };
 
-// ======================================================
-// ADMIN: SHOW CREATE COURSE FORM
-// ======================================================
+
 exports.getCreateCourse = async (req, res, next) => {
   try {
     const trainers = await Trainer.find();
@@ -36,9 +32,7 @@ exports.getCreateCourse = async (req, res, next) => {
   }
 };
 
-// ======================================================
-// ADMIN: CREATE COURSE
-// ======================================================
+
 exports.postCreateCourse = async (req, res, next) => {
   try {
     const { title, summary, description, price, capacity, trainer, schedule } =
@@ -69,9 +63,7 @@ exports.postCreateCourse = async (req, res, next) => {
   }
 };
 
-// ======================================================
-// ADMIN: SHOW EDIT COURSE FORM
-// ======================================================
+
 exports.getEditCourse = async (req, res, next) => {
   try {
     const course = await Course.findById(req.params.id);
@@ -90,9 +82,6 @@ exports.getEditCourse = async (req, res, next) => {
   }
 };
 
-// ======================================================
-// ADMIN: EDIT COURSE
-// ======================================================
 exports.postEditCourse = async (req, res, next) => {
   try {
     const { title, summary, description, price, capacity, trainer, schedule } =

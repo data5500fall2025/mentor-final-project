@@ -2,9 +2,7 @@ const bcrypt = require("bcryptjs");
 const User = require("../models/user-model");
 const Course = require("../models/course-model");
 
-// =========================
-// SHOW SIGNUP FORM
-// =========================
+
 exports.getSignup = (req, res, next) => {
   try {
     return res.render("signup", {
@@ -18,11 +16,9 @@ exports.getSignup = (req, res, next) => {
   }
 };
 
-// =========================
-// HANDLE SIGNUP
-// =========================
+
 exports.postSignup = async (req, res, next) => {
-  console.log("🔥 SIGNUP POST ROUTE HIT");
+  console.log("SIGNUP POST ROUTE HIT");
 
   const { firstName, lastName, email, password, confirm_password } = req.body;
 
@@ -61,14 +57,12 @@ exports.postSignup = async (req, res, next) => {
     return res.redirect("/auth/login");
 
   } catch (err) {
-    console.error("🔥 SIGNUP ERROR:", err);
+    console.error("SIGNUP ERROR:", err);
     return next(err);
   }
 };
 
-// =========================
-// SHOW LOGIN FORM
-// =========================
+
 exports.getLogin = (req, res, next) => {
   try {
     return res.render("login", {
@@ -133,14 +127,12 @@ exports.postLogin = async (req, res, next) => {
     });
 
   } catch (err) {
-    console.error("🔥 LOGIN ERROR:", err);
+    console.error("LOGIN ERROR:", err);
     return next(err);
   }
 };
 
-// =========================
-// LOGOUT
-// =========================
+
 exports.logout = (req, res, next) => {
   try {
     req.session.destroy(() => {
@@ -151,9 +143,6 @@ exports.logout = (req, res, next) => {
   }
 };
 
-// =========================
-// STEP 9: MY COURSES PAGE
-// =========================
 exports.getMyCourses = async (req, res, next) => {
   try {
     const userId = req.session.user?.id;

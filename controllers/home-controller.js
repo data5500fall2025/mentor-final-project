@@ -6,9 +6,7 @@ const Testimonial = require("../models/testimonial-model");
 const courseController = require("../controllers/course-controller");
 const trainerController = require("../controllers/trainer-controller");
 
-// ===============================
-// HOME PAGE
-// ===============================
+//homepage
 exports.getHome = async (req, res, next) => {
   console.log("SESSION USER:", req.session.user);
 
@@ -39,9 +37,7 @@ exports.getHome = async (req, res, next) => {
   }
 };
 
-// ===============================
-// ABOUT PAGE
-// ===============================
+//about page
 exports.getAbout = async (req, res, next) => {
   try {
     const courseCount = await Course.countDocuments();

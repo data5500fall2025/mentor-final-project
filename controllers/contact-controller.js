@@ -1,8 +1,6 @@
 const Contact = require("../models/contact-model");
 
-// ===============================
-// PUBLIC CONTACT ROUTES
-// ===============================
+
 
 // Show contact form
 exports.getContact = (req, res, next) => {
@@ -41,9 +39,9 @@ exports.postContact = async (req, res, next) => {
 
     res.redirect("/contacts/thanks");
   } catch (err) {
-    console.error("❌ Contact submission error:", err);
+    console.error("Contact submission error:", err);
 
-    // Gracefully re-render the form with user-entered values preserved
+ 
     res.render("contact", {
       pageTitle: "Contact Us",
       pageClass: "contact-page",
@@ -53,9 +51,7 @@ exports.postContact = async (req, res, next) => {
   }
 };
 
-// ===============================
 // ADMIN CONTACT RESPONSE ROUTES
-// ===============================
 
 // List contacts with no response
 exports.getContactsWithNoResponse = async (req, res, next) => {

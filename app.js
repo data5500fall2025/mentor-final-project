@@ -55,21 +55,21 @@ app.set("layout", "layout");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(requestLogger);
 
-// ===============================
+
 // ROUTES
-// ===============================
+
 const homeRoutes = require("./routes/home-routes");
 const courseRoutes = require("./routes/course-routes");
 const trainerRoutes = require("./routes/trainer-routes");
 const eventRoutes = require("./routes/event-routes");
 const contactRoutes = require("./routes/contact-routes");
 const userRoutes = require("./routes/user-routes");
-const adminRoutes = require("./routes/admin-routes");  // ⭐ NEW
+const adminRoutes = require("./routes/admin-routes");  
 const apiRoutes = require("./routes/api-routes");
 const externalApiRoutes = require("./routes/externalapi-routes");
 
 app.use("/auth", userRoutes);
-app.use("/admin", adminRoutes);        // ⭐ Must be above home routes
+app.use("/admin", adminRoutes);       
 app.use("/courses", courseRoutes);
 app.use("/trainers", trainerRoutes);
 app.use("/events", eventRoutes);

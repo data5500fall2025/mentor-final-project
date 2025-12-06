@@ -1,8 +1,6 @@
 const Trainer = require("../models/trainer-model");
 
-// ===============================
-// PUBLIC: DISPLAY ALL TRAINERS
-// ===============================
+
 exports.getTrainers = async (req, res, next) => {
   try {
     const trainers = await Trainer.find().sort({ name: 1 }); // alphabetical
@@ -17,10 +15,7 @@ exports.getTrainers = async (req, res, next) => {
   }
 };
 
-// ===============================
-// UTILITY: GET TOP TRAINERS
-// Used on the home page
-// ===============================
+
 exports.getTopTrainersById = async (limit) => {
   try {
     return await Trainer.find()

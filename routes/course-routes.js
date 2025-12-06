@@ -2,11 +2,8 @@ const express = require("express");
 const router = express.Router();
 const courseController = require("../controllers/course-controller");
 
-// =============================
-// PUBLIC COURSE ROUTES
-// =============================
 
-// List all courses (now populates trainer)
+// List all courses 
 router.get("/", courseController.getCourses);
 
 // Course details by slug

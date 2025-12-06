@@ -3,8 +3,8 @@ const router = express.Router();
 
 const contactController = require("../controllers/contact-controller");
 
-// PUBLIC ROUTES
 router.get("/", contactController.getContact);
+router.get("/new", contactController.getContact);  
 router.post("/", contactController.postContact);
 router.get("/thanks", contactController.getThanks);
 

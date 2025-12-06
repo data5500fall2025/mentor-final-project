@@ -48,13 +48,15 @@
           <li><a href="/courses" class="<%= pageTitle === 'Courses' ? 'active' : '' %>">Courses</a></li>
           <li><a href="/trainers" class="<%= pageTitle === 'Trainers' ? 'active' : '' %>">Trainers</a></li>
           <li><a href="/events" class="<%= pageTitle === 'Events' ? 'active' : '' %>">Events</a></li>
-          <li><a href="/contacts/new" class="<%= pageTitle === 'Contact Us' ? 'active' : '' %>">Contact</a></li>
+
+          <!-- FIXED: correct public contact route -->
+          <li><a href="/contacts" class="<%= pageTitle === 'Contact Us' ? 'active' : '' %>">Contact</a></li>
+
           <li>
             <a href="/externalapi" class="<%= pageTitle === 'External API' ? 'active' : '' %>">
               External API
             </a>
           </li>
-
 
           <!-- ADMIN DROPDOWN -->
           <% if (session?.user?.roles?.includes("admin")) { %>
@@ -64,32 +66,32 @@
                 <i class="bi bi-chevron-down toggle-dropdown"></i>
               </a>
               <ul>
-                <li><a href="/courses/admin/create">Create Course</a></li>
+
+                <!-- FIXED: correct admin create course link -->
+                <li><a href="/admin/courses/create">Create Course</a></li>
+
+                <!-- FIXED: correct contact response route -->
                 <li><a href="/contacts/respond">Respond to Contacts</a></li>
+
               </ul>
             </li>
-            <% } %>
+          <% } %>
         </ul>
 
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
       <!-- LOGIN / LOGOUT / MY COURSES BUTTONS -->
-<% if (!session || !session.user) { %>
+      <% if (!session || !session.user) { %>
 
-    <!-- Show login button when NOT logged in -->
-    <a class="btn-getstarted" href="/auth/login">Login</a>
+        <a class="btn-getstarted" href="/auth/login">Login</a>
 
-<% } else { %>
+      <% } else { %>
 
-    <!-- New MY COURSES button when user IS logged in -->
-    <a class="btn-getstarted me-2" href="/auth/my-courses">My Courses</a>
+        <a class="btn-getstarted me-2" href="/auth/my-courses">My Courses</a>
+        <a class="btn-getstarted" href="/auth/logout">Logout</a>
 
-    <!-- Logout button -->
-    <a class="btn-getstarted" href="/auth/logout">Logout</a>
-
-<% } %>
-
+      <% } %>
 
     </div>
   </header>
@@ -99,100 +101,100 @@
     <div class="alert alert-success text-center py-2">
       <%= session.flashMessage %>
     </div>
-    <% } %>
+  <% } %>
 
-      <main class="main"><%- body %></main>
+  <main class="main"><%- body %></main>
 
-      <footer id="footer" class="footer position-relative light-background">
-        <div class="container footer-top">
-          <div class="row gy-4">
+  <footer id="footer" class="footer position-relative light-background">
+    <div class="container footer-top">
+      <div class="row gy-4">
 
-            <!-- Footer About -->
-            <div class="col-lg-4 col-md-6 footer-about">
-              <a href="/" class="logo d-flex align-items-center">
-                <span class="sitename">Mentor</span>
-              </a>
-              <div class="footer-contact pt-3">
-                <p>976-1004 E 550 N</p>
-                <p>Logan, UT 84321</p>
-                <p class="mt-3"><strong>Phone:</strong> <span>+1 435 797 2272</span></p>
-                <p><strong>Email:</strong> <span>info@mentor.com</span></p>
-              </div>
+        <!-- Footer About -->
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="/" class="logo d-flex align-items-center">
+            <span class="sitename">Mentor</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>976-1004 E 550 N</p>
+            <p>Logan, UT 84321</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+1 435 797 2272</span></p>
+            <p><strong>Email:</strong> <span>info@mentor.com</span></p>
+          </div>
 
-              <div class="social-links d-flex mt-4">
-                <a href=""><i class="bi bi-twitter-x"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
-              </div>
-            </div>
-
-            <!-- Footer Links -->
-            <div class="col-lg-2 col-md-3 footer-links">
-              <h4>Useful Links</h4>
-              <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Terms of service</a></li>
-                <li><a href="#">Privacy policy</a></li>
-              </ul>
-            </div>
-
-            <!-- Services -->
-            <div class="col-lg-2 col-md-3 footer-links">
-              <h4>Our Services</h4>
-              <ul>
-                <li><a href="#">Web Design</a></li>
-                <li><a href="#">Web Development</a></li>
-                <li><a href="#">Product Management</a></li>
-                <li><a href="#">Marketing</a></li>
-                <li><a href="#">Graphic Design</a></li>
-              </ul>
-            </div>
-
-            <!-- Newsletter -->
-            <div class="col-lg-4 col-md-12 footer-newsletter">
-              <h4>Our Newsletter</h4>
-              <p>Subscribe to our newsletter and receive updates!</p>
-              <form action="#" method="post" class="php-email-form">
-                <div class="newsletter-form">
-                  <input type="email" name="email" />
-                  <input type="submit" value="Subscribe" />
-                </div>
-              </form>
-            </div>
-
+          <div class="social-links d-flex mt-4">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
           </div>
         </div>
 
-        <div class="container copyright text-center mt-4">
-          <p>
-            © <span>Copyright</span>
-            <strong class="px-1 sitename">Mentor</strong>
-            <span>All Rights Reserved</span>
-          </p>
-          <div class="credits">
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-          </div>
+        <!-- Footer Links -->
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Terms of service</a></li>
+            <li><a href="#">Privacy policy</a></li>
+          </ul>
         </div>
-      </footer>
 
-      <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
-        <i class="bi bi-arrow-up-short"></i>
-      </a>
+        <!-- Services -->
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Product Management</a></li>
+            <li><a href="#">Marketing</a></li>
+            <li><a href="#">Graphic Design</a></li>
+          </ul>
+        </div>
 
-      <div id="preloader"></div>
+        <!-- Newsletter -->
+        <div class="col-lg-4 col-md-12 footer-newsletter">
+          <h4>Our Newsletter</h4>
+          <p>Subscribe to our newsletter and receive updates!</p>
+          <form action="#" method="post" class="php-email-form">
+            <div class="newsletter-form">
+              <input type="email" name="email" />
+              <input type="submit" value="Subscribe" />
+            </div>
+          </form>
+        </div>
 
-      <!-- Vendor JS Files -->
-      <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-      <script src="/assets/vendor/aos/aos.js"></script>
-      <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
-      <script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
-      <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+      </div>
+    </div>
 
-      <!-- Main JS File -->
-      <script src="/assets/js/main.js"></script>
+    <div class="container copyright text-center mt-4">
+      <p>
+        © <span>Copyright</span>
+        <strong class="px-1 sitename">Mentor</strong>
+        <span>All Rights Reserved</span>
+      </p>
+      <div class="credits">
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/aos/aos.js"></script>
+  <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="/assets/js/main.js"></script>
 
 </body>
 

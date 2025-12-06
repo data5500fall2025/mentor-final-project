@@ -4,7 +4,7 @@ const router = express.Router();
 const adminController = require("../controllers/admin-controller");
 const isAdmin = require("../middleware/is-admin");
 
-// Multer for uploads
+
 const multer = require("multer");
 const path = require("path");
 
@@ -18,10 +18,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
-
-// ===============================
-// ADMIN COURSE MANAGEMENT
-// ===============================
+//admin course mangement
 router.get("/courses", isAdmin, adminController.getAdminCourses);
 
 router.get("/create-course", isAdmin, adminController.getCreateCourse);
