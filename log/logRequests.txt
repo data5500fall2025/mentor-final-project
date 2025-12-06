@@ -4174,3 +4174,9 @@
 [0mGET /assets/img/team/trainer-1.jpg [33m404[0m 0.758 ms - 8147[0m
 [0mGET /assets/img/team/trainer-3-2.jpg [33m404[0m 0.915 ms - 8147[0m
 [0mGET /assets/img/team/trainer-2-2.jpg [33m404[0m 0.579 ms - 8147[0m
+[0mGET / [32m200[0m 459.295 ms - 22678[0m
+[0mGET /assets/img/team/trainer-1.jpg [33m404[0m 3.603 ms - 7944[0m
+[0mGET /assets/img/team/trainer-2-2.jpg [33m404[0m 2.292 ms - 7944[0m
+[0mGET /assets/img/team/trainer-3-2.jpg [33m404[0m 3.270 ms - 7944[0m
+[0mGET /assets/img/team/trainer-1-2.jpg [33m404[0m 2.482 ms - 7944[0m
+[0mGET /contacts [32m200[0m 3.003 ms - 11215[0m

@@ -59,23 +59,22 @@
           </li>
 
           <!-- ADMIN DROPDOWN -->
-          <% if (session?.user?.roles?.includes("admin")) { %>
-            <li class="dropdown">
-              <a href="#">
-                <span>Admin</span>
-                <i class="bi bi-chevron-down toggle-dropdown"></i>
-              </a>
-              <ul>
+<% if (session?.user?.roles?.includes("admin")) { %>
+  <li class="dropdown">
+    <a href="#">
+      <span>Admin</span>
+      <i class="bi bi-chevron-down toggle-dropdown"></i>
+    </a>
+    <ul>
+      <!-- Correct admin create course link -->
+      <li><a href="/admin/create-course">Create Course</a></li>
 
-                <!-- FIXED: correct admin create course link -->
-                <li><a href="/admin/courses/create">Create Course</a></li>
+      <!-- Contact response link -->
+      <li><a href="/contacts/respond">Respond to Contacts</a></li>
+    </ul>
+  </li>
+<% } %>
 
-                <!-- FIXED: correct contact response route -->
-                <li><a href="/contacts/respond">Respond to Contacts</a></li>
-
-              </ul>
-            </li>
-          <% } %>
         </ul>
 
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>

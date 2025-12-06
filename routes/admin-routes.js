@@ -2,12 +2,13 @@ const express = require("express");
 const router = express.Router();
 
 const adminController = require("../controllers/admin-controller");
+const contactController = require("../controllers/contact-controller");
 const isAdmin = require("../middleware/is-admin");
-
 
 const multer = require("multer");
 const path = require("path");
 
+// ===== Multer Config =====
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "public/assets/img/courses");
@@ -16,27 +17,38 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + path.extname(file.originalname));
   }
 });
-
 const upload = multer({ storage });
-//admin course mangement
+
+// ===============================
+// ADMIN COURSE MANAGEMENT
+// ===============================
 router.get("/courses", isAdmin, adminController.getAdminCourses);
 
-router.get("/create-course", isAdmin, adminController.getCreateCourse);
+router.get("/courses/create", isAdmin, adminController.getCreateCourse);
 router.post(
-  "/create-course",
+  "/courses/create",
   isAdmin,
   upload.single("image"),
   adminController.postCreateCourse
 );
 
-router.get("/:id/edit", isAdmin, adminController.getEditCourse);
+router.get("/courses/:id/edit", isAdmin, adminController.getEditCourse);
 router.post(
-  "/:id/edit",
+  "/courses/:id/edit",
   isAdmin,
   upload.single("image"),
   adminController.postEditCourse
 );
 
-router.post("/:id/delete", isAdmin, adminController.postDeleteCourse);
+router.post("/courses/:id/delete", isAdmin, adminController.postDeleteCourse);
+
+// ===============================
+// ADMIN CONTACT RESPONSE ROUTES
+// ===============================
+router.get("/contacts/respond", isAdmin, contactController.getContactsWithNoResponse);
+
+router.get("/contacts/respond/:id", isAdmin, contactController.getContactResponseForm);
+
+router.post("/contacts/respond/:id", isAdmin, contactController.postContactResponse);
 
 module.exports = router;
