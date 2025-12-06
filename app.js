@@ -6,15 +6,15 @@ const requestLogger = require("./middleware");
 
 const app = express();
 
-// ===============================
-// BODY PARSING (must be first)
-// ===============================
+// REQUIRED FOR RENDER SESSION COOKIES
+app.set("trust proxy", 1);
+
+// BODY PARSING
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ===============================
+
 // SESSION SETUP
-// ===============================
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 
@@ -31,9 +31,13 @@ app.use(
     resave: false,
     saveUninitialized: false,
     store,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 }, // 1 day
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24,
+      secure: process.env.NODE_ENV === "production"
+    }
   })
 );
+
 
 // Make session available in all EJS views
 app.use((req, res, next) => {
@@ -41,17 +45,13 @@ app.use((req, res, next) => {
   next();
 });
 
-// ===============================
-// VIEW ENGINE SETUP
-// ===============================
+
 app.set("view engine", "ejs");
 app.set("views", "views");
 app.use(expressLayouts);
 app.set("layout", "layout");
 
-// ===============================
-// STATIC FILES + LOGGING
-// ===============================
+
 app.use(express.static(path.join(__dirname, "public")));
 app.use(requestLogger);
 
