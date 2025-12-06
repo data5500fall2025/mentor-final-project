@@ -26,7 +26,7 @@
       <div class="col-lg-8">
 
         <!-- Course Image -->
-        <img src="<%= course.image %>" class="img-fluid mb-4" alt="" />
+        <img src="<%= course.image %>" class="img-fluid mb-4" alt="Course Image" />
 
         <!-- Description -->
         <h3>About this course</h3>
@@ -44,32 +44,34 @@
       <!-- Trainer Card -->
       <div class="col-lg-4">
         <div class="trainer-card">
-          <img
-            src="<%= course.trainer?.imageUrl %>"
-            class="img-fluid mb-3"
-            alt="Trainer"
-          />
+          <img src="<%= course.trainer?.imageUrl %>" class="img-fluid mb-3" alt="Trainer" />
           <h3><%= course.trainer?.name %></h3>
-
           <p><%= course.trainer?.description %></p>
         </div>
 
         <!-- Register / Unregister Buttons -->
         <div class="mt-4">
 
-          <% if (!user) { %>
+          <% if (!session?.user) { %>
+
+            <!-- Not logged in -->
             <a href="/auth/login" class="btn btn-primary w-100">Login to Register</a>
 
           <% } else if (isRegistered) { %>
+
+            <!-- Already registered -->
             <form action="/courses/<%= course._id %>/unregister" method="POST">
               <button class="btn btn-danger w-100">Unregister</button>
             </form>
 
           <% } else { %>
+
+            <!-- Not yet registered -->
             <form action="/courses/register" method="POST">
               <input type="hidden" name="course" value="<%= course._id %>" />
               <button class="btn btn-success w-100">Register</button>
             </form>
+
           <% } %>
 
         </div>

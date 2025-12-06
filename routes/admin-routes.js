@@ -1,6 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
+router.get("/test", (req, res) => {
+  res.send("Admin router is working.");
+});
+
+
 const adminController = require("../controllers/admin-controller");
 const contactController = require("../controllers/contact-controller");
 const isAdmin = require("../middleware/is-admin");
@@ -19,12 +24,10 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// ===============================
-// ADMIN COURSE MANAGEMENT
-// ===============================
+
 router.get("/courses", isAdmin, adminController.getAdminCourses);
 
-router.get("/courses/create", isAdmin, adminController.getCreateCourse);
+router.get("/create-course", isAdmin, adminController.getCreateCourse);
 router.post(
   "/courses/create",
   isAdmin,

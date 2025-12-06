@@ -58,7 +58,6 @@
               External API
             </a>
           </li>
-
           <!-- ADMIN DROPDOWN -->
           <% if (session?.user?.roles?.includes("admin")) { %>
             <li class="dropdown">
@@ -67,19 +66,13 @@
                 <i class="bi bi-chevron-down toggle-dropdown"></i>
               </a>
               <ul>
-
-                <!-- MANAGE ALL COURSES -->
                 <li><a href="/admin/courses">Manage Courses</a></li>
-
-                <!-- CREATE COURSE -->
                 <li><a href="/admin/create-course">Create Course</a></li>
-
-                <!-- RESPOND TO CONTACTS -->
-                <li><a href="/admin/contacts">Respond to Contacts</a></li>
-
+                <li><a href="/contacts/respond">Respond to Contacts</a></li>
               </ul>
             </li>
             <% } %>
+
 
 
         </ul>

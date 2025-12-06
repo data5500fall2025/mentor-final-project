@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 const path = require("path");
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
-const requestLogger = require("./middleware");
+const requestLogger = require("./middleware/request-logger");
+
 
 const app = express();
 
@@ -54,6 +55,7 @@ app.set("layout", "layout");
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(requestLogger);
+
 
 
 // ROUTES
